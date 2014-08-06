@@ -77,7 +77,7 @@ class MailModel
     /**
      * Getter of Email Entity
      *
-     * @return \NfcCore\Entity\Email
+     * @return \Core\Entity\Email
      */
     public function getEmailEntity()
     {

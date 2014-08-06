@@ -32,9 +32,4 @@ class MailService
     {
         $this->recipients = $recipients;
     }
-
-    protected function getRecipients()
-    {
-
-    }
 }
