@@ -1,0 +1,41 @@
+<?php
+namespace GdproMailer;
+
+use Zend\Mail\Transport\Smtp;
+use Zend\Mail\Transport\SmtpOptions;
+
+class SmtpManager
+{
+    protected $smtpList;
+
+    public function __construct(array $smtpList)
+    {
+        $this->smtpList = $smtpList;
+    }
+
+    public function get($smtpName)
+    {
+        if(!array_key_exists($smtpName, $this->smtpList)) {
+            throw new \Exception(
+                __METHOD__.' was unable to create an instance for smtp .'.$smtpName
+            );
+        }
+
+        // Create Smtp Options
+        $options = new SmtpOptions([
+            'name' => $this->smtpList[$smtpName]['hostname'],
+            'host' => $this->smtpList[$smtpName]['host'],
+            'connection_class' => 'login',
+            'connection_config' => [
+                'username' => $this->smtpList[$smtpName]['username'],
+                'password' => $this->smtpList[$smtpName]['password'],
+                'ssl' => 'tls'
+            ]
+        ]);
+
+        // Create Smtp Transport and add options
+        $smtp = new Smtp($options);
+
+        return $smtp;
+    }
+}

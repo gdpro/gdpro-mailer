@@ -1,0 +1,17 @@
+<?php
+namespace GdproMailer\Factory;
+
+use Zend\ServiceManager\FactoryInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
+
+class MailerServiceFactory implements FactoryInterface
+{
+    public function createService(ServiceLocatorInterface $services)
+    {
+        $config = $services->get('config');
+
+        return new \GdproMailer\MailerService(
+            $config['gdpro_mailer']
+        );
+    }
+}

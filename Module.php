@@ -1,5 +1,5 @@
 <?php
-namespace GdproMail;
+namespace GdproMailer;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
