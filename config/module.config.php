@@ -8,7 +8,7 @@ return [
                 'domain_name' => 'socialcar.com',
                 'host' => 'smtp.googlemail.com',
                 'username' => 'gary.gitton@gmail.com',
-                'password' => 'ggianray'
+                'password' => ''
             ]
         ],
 //        /* Define your templates to use with the message renderer */
@@ -40,8 +40,6 @@ return [
     ],
 
     'service_manager' => [
-        'invokables' => [
-        ],
         'factories' => [
             // Smtp (Transport)
             'gdpro_mailer.smtp_manager' => 'GdproMailer\Factory\SmtpManagerFactory',
