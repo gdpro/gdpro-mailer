@@ -21,15 +21,20 @@ class SmtpManager
             );
         }
 
+        if(!isset($this->smtpList[$smtpName]['ssl'])) {
+            $this->smtpList[$smtpName]['ssl'] = 'tls';
+        }
+
         // Create Smtp Options
         $options = new SmtpOptions([
             'name' => $this->smtpList[$smtpName]['hostname'],
             'host' => $this->smtpList[$smtpName]['host'],
+            'port' => $this->smtpList[$smtpName]['port'],
             'connection_class' => 'login',
             'connection_config' => [
                 'username' => $this->smtpList[$smtpName]['username'],
                 'password' => $this->smtpList[$smtpName]['password'],
-                'ssl' => 'tls'
+                'ssl' => $this->smtpList[$smtpName]['ssl']
             ]
         ]);
 

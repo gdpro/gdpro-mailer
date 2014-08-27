@@ -5,7 +5,7 @@ return [
 
         'smtp' => [
             'default' => [
-                'domain_name' => 'socialcar.com',
+                'domain_name' => 'gary.pro',
                 'host' => 'smtp.googlemail.com',
                 'username' => 'gary.gitton@gmail.com',
                 'password' => ''
@@ -18,7 +18,7 @@ return [
 //            'template_example' => [
 //
 //                /* Define the subject of your message
-//                'subject' => 'Social Car - Validation de votre inscription',
+//                'subject' => 'gdpro - Validation de votre inscription',
 //
 //                /* Define the view template to use for the template */
 //                /*
