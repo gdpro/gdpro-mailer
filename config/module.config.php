@@ -25,8 +25,17 @@ return [
 //                'view' => 'gdpro_mail/mail/example',
 //            ]
 //        ]
-
-
+        'queue' => [
+            'name'          => 'gdpro_mailer',
+            'driverOptions' => array(
+                'host'      => '127.0.0.1',
+                'port'      => '3306',
+                'username'  => 'queue',
+                'password'  => 'queue',
+                'dbname'    => 'queue',
+                'type'      => 'pdo_mysql'
+            )
+        ]
     ],
 
     'view_manager' => [

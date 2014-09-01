@@ -17,7 +17,7 @@ class MailerService
     {
         $message->addTo($recipient);
 
-        if($this->config['email_sending_activated']) {
+        if(!$this->config['disable_delivery']) {
             $smtp->send($message);
         }
     }
