@@ -8,6 +8,7 @@ return [
                 'domain_name' => 'gary.pro',
                 'host' => 'smtp.googlemail.com',
                 'username' => 'gary.gitton@gmail.com',
+                'port' => '25',
                 'password' => ''
             ]
         ],
@@ -49,6 +50,11 @@ return [
     ],
 
     'service_manager' => [
+        'aliases' => [
+            'gdpro_mailer.service.mailer' => 'gdpro_mailer.mailer_service',
+            'gdpro_mailer.renderer.message' => 'gdpro_mailer.message_renderer',
+            'gdpro_mailer.manager.smtp' => 'gdpro_mailer.smtp_manager'
+        ],
         'factories' => [
             // Smtp (Transport)
             'gdpro_mailer.smtp_manager' => 'GdproMailer\Factory\SmtpManagerFactory',
@@ -61,4 +67,3 @@ return [
         ]
     ]
 ];
-

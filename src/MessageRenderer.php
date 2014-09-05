@@ -17,7 +17,7 @@ class MessageRenderer
         $this->viewRenderer = $viewRenderer;
     }
 
-    public function render($templateName, array $vars)
+    public function render($templateName, array $vars = null)
     {
         if(!array_key_exists($templateName, $this->templates)) {
             throw new \Exception(
