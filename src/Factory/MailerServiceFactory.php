@@ -11,7 +11,11 @@ class MailerServiceFactory implements FactoryInterface
         $config = $services->get('config');
 
         return new \GdproMailer\MailerService(
-            $config['gdpro_mailer']
+            $config['gdpro_mailer'],
+            $services->get('gdpro_mailer.message_renderer'),
+            $services->get('gdpro_mailer.smtp_manager'),
+            $services->get('gdpro_monolog.manager')->get('gdpro_mailer'),
+            $services->get('gdpro_mailer.logger.log.creator.mailer')
         );
     }
 }

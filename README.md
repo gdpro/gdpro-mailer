@@ -1,0 +1,6 @@
+## Gdpro Mailer
+
+
+### Dependencies
+
+- GdproMonolog
