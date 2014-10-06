@@ -4,6 +4,7 @@ return [
     'gdpro_mailer' => include 'gdpro_mailer.config.php',
     'service_manager' => include 'service_manager.config.php',
     'console' => include 'console.config.php',
+    'slm_queue' => include 'slm_queue.config.php',
 
     'controllers' => [
         'factories' => [
