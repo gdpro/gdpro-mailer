@@ -1,6 +1,10 @@
 <?php
 return [
     'job_manager' => [
+        'aliases' => [
+            'GdproMailer\Job\SendMailJob' => 'gdpro_mailer.job.send_mail'
+        ],
+
        /**
         * Allow to configure dependencies for jobs that are pulled from any queue. This works like any other
         * PluginManager in Zend Framework 2. For instance, if you want to inject something into every job using

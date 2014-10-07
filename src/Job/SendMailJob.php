@@ -20,16 +20,22 @@ class SendMailJob extends AbstractJob
 
     public function execute()
     {
-        $payload = $this->getContent();
+        try {
+            $payload = $this->getContent();
 
-        $templateEmail = $payload['templateEmail'];
-        $vars = $payload['vars'];
-        $smtpName = $payload['smtpName'];
-        $recipient = $payload['recipient'];
+            $templateEmail = $payload['templateEmail'];
+            $vars = $payload['vars'];
+            $smtpName = $payload['smtpName'];
+            $recipient = $payload['recipient'];
 
-        $message = $this->messageRenderer->render($templateEmail, $vars);
-        $smtp = $this->smtpManager->get($smtpName);
+            $message = $this->messageRenderer->render($templateEmail, $vars);
+            $smtp = $this->smtpManager->get($smtpName);
 
-        $this->mailerService->sendMessage($message, $smtp, $recipient);
+            $this->mailerService->sendMessage($message, $smtp, $recipient);
+
+        } catch(\Exception $e) {
+            var_dump($e->getMessage());
+            exit;
+        }
     }
 }

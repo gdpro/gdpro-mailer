@@ -6,9 +6,9 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 
 class SendMailJobFactory implements FactoryInterface
 {
-    public function createService(ServiceLocatorInterface $services)
+    public function createService(ServiceLocatorInterface $jobPluginManager)
     {
-        $config = $services->get('config');
+        $services = $jobPluginManager->getServiceLocator();
 
         return new \GdproMailer\Job\SendMailJob(
             $services->get('gdpro_mailer.mailer_service'),
