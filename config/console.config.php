@@ -7,7 +7,7 @@ return [
                 'options' => [
                     'route'    => 'gdpro mailer send mail <templateName> <recipient> <smtpName> <vars>',
                     'defaults' => [
-                        'controller' => 'GdproMailer\Command\SendMail',
+                        'controller' => 'gdpro_mailer.command.send_mail',
                         'action'     => 'index'
                     ]
                 ]
