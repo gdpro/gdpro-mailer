@@ -6,7 +6,7 @@ return [
         'gdpro_mailer.manager.smtp' => 'gdpro_mailer.smtp_manager'
     ],
     'invokables' => [
-        'gdpro_mailer.logger.log.creator.mailer' => 'GdproMailer\Logger\Log\Creator\MailerLogCreator',
+//        'gdpro_mailer.logger.mailer' => 'GdproMailer\Logger\MailerLogger',
     ],
     'factories' => [
         // Smtp (Transport)

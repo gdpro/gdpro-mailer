@@ -1,7 +1,7 @@
 <?php
-namespace GdproMailer\Logger\Log\Creator;
+namespace GdproMailer;
 
-class MailerLogCreator
+class MailerLogger
 {
     public function createLog(
         $templateName,

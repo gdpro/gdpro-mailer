@@ -12,20 +12,17 @@ class MailerService
     protected $messageRenderer;
     protected $smtpManager;
     protected $logger;
-    protected $mailerLogCreator;
 
     public function __construct(
         array $config,
         MessageRenderer $messageRenderer,
         SmtpManager $smtpManager,
-        Logger $logger,
-        MailerLogCreator $mailerLogCreator
+        Logger $logger
     ) {
         $this->config = $config;
         $this->messageRenderer = $messageRenderer;
         $this->smtpManager = $smtpManager;
         $this->logger = $logger;
-        $this->mailerLogCreator = $mailerLogCreator;
     }
 
     public function sendMessage(Message $message, Smtp $smtp, $recipient)

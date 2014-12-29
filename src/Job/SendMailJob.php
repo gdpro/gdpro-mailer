@@ -4,18 +4,27 @@ namespace GdproMailer\Job;
 use GdproMailer\MailerService;
 use GdproMailer\MessageRenderer;
 use GdproMailer\SmtpManager;
+use Monolog\Logger;
 use SlmQueue\Job\AbstractJob;
+use SlmQueue\Worker\WorkerEvent;
 
 class SendMailJob extends AbstractJob
 {
+    protected $mailerService;
+    protected $messageRenderer;
+    protected $smtpManager;
+    protected $logger;
+
     public function __construct(
         MailerService $mailerService,
         MessageRenderer $messageRenderer,
-        SmtpManager $smtpManager
+        SmtpManager $smtpManager,
+        Logger $logger
     ) {
         $this->mailerService = $mailerService;
         $this->messageRenderer = $messageRenderer;
         $this->smtpManager = $smtpManager;
+        $this->logger = $logger;
     }
 
     public function execute()
@@ -34,8 +43,10 @@ class SendMailJob extends AbstractJob
             $this->mailerService->sendMessage($message, $smtp, $recipient);
 
         } catch(\Exception $e) {
-            var_dump($e->getMessage());
-            exit;
+
+            $this->logger->addError($e->getMessage());
+
+            throw $e;
         }
     }
 }

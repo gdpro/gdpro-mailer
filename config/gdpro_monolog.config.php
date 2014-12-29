@@ -4,7 +4,7 @@ return [
         'gdpro_mailer' => [
             'name' => 'Mailer Logger',
             'handlers' => [
-                'default'
+                'gdpro_mailer'
             ]
         ]
     ],
