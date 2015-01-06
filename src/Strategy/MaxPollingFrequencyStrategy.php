@@ -19,7 +19,7 @@ class MaxPollingFrequencyStrategy extends AbstractStrategy
         $this->listeners[] = $events->attach(
             WorkerEvent::EVENT_PROCESS_QUEUE,
             array($this, 'onQueueProcessFinish'),
-            100
+            1000
         );
     }
 
@@ -30,14 +30,14 @@ class MaxPollingFrequencyStrategy extends AbstractStrategy
             return;
         }
 
-        $endTime = microtime(true);
-        $time = ($endTime - $this->lastTime) / 1000;
+        $startTime = microtime(true);
+        $time = ($startTime - $this->lastTime);
 
         $minTime = 1 / $this->maxFrequency;
 
         if($time < $minTime) {
             $waitTime = $minTime - $time;
-            sleep($waitTime);
+            usleep($waitTime * 1000000);
         }
 
         $this->lastTime = microtime(true);
