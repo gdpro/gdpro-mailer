@@ -20,28 +20,6 @@ return [
     'queue_manager' => [
         'factories' => [
             'default' => 'SlmQueueSqs\Factory\SqsQueueFactory'
-        ],
-    ],
-
-    /**
-     * Worker Strategies
-     */
-    'worker_strategies' => [
-        'queues' => [ // per queue
-            'default' => [
-                'gdpro_mailer.strategy.max_polling_frequency_strategy' => [
-                    'MaxFrequency' => 0.05 // Max polling per second
-                ]
-            ]
-        ]
-    ],
-
-    /**
-     * Strategy manager configuration
-     */
-    'strategy_manager' => [
-        'invokables' => [
-            'gdpro_mailer.strategy.max_polling_frequency_strategy' => 'GdproMailer\Strategy\MaxPollingFrequencyStrategy',
         ]
     ]
 ];

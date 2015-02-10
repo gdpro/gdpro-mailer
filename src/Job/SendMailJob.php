@@ -42,6 +42,9 @@ class SendMailJob extends AbstractJob
 
             $this->mailerService->sendMessage($message, $smtp, $recipient);
 
+            $message = 'Msg ("'.$templateEmail.'") send to '.$recipient;
+            $this->logger->addInfo($message);
+
         } catch(\Exception $e) {
 
             $this->logger->addError($e->getMessage());
