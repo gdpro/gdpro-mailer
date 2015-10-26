@@ -8,12 +8,6 @@
             "homepage":"http://www.gary.pro/"
         }
     ],
-    "repositories": [
-        {
-            "type": "git",
-            "url": "git@gitlab.gary.pro:gdpro/gdpro-monolog.git"
-        }
-    ],
     "require": {
         "php": ">=5.5.8",
         "zendframework/zendframework": "~2.5.2",
