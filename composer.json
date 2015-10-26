@@ -16,7 +16,7 @@
     ],
     "require": {
         "php": ">=5.5.8",
-        "zendframework/zendframework": "dev-master",
+        "zendframework/zendframework": "~2.5.2",
         "gdpro/gdpro-monolog": "~1.0",
         "slm/queue-sqs": "~0.3"
     },
@@ -28,9 +28,6 @@
         "psr-4": {
             "GdproMailer\\": "src/",
             "GdproMailerTest\\": "test/"
-        },
-        "classmap": [
-            "Module.php"
-        ]
+        }
     }
 }
