@@ -10,8 +10,7 @@
     ],
     "require": {
         "php": ">=5.5.8",
-        "zendframework/zendframework": "~2.5.2",
-        "gdpro/gdpro-monolog": "~1.0",
+        "gdpro/gdpro-monolog": "~1.0.0",
         "slm/queue-sqs": "~0.3"
     },
     "require-dev": {
@@ -20,7 +19,14 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "GdproMailer\\": "src/",
+            "GdproMailer\\": "src/"
+        },
+        "classmap": [
+            "Module.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
             "GdproMailerTest\\": "test/"
         }
     }
