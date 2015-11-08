@@ -1,6 +1,10 @@
 <?php
-namespace GdproMailer;
+namespace Gdpro\Mailer;
 
+/**
+ * Class MailerLogger
+ * @package Gdpro\Mailer
+ */
 class MailerLogger
 {
     public function createLog(

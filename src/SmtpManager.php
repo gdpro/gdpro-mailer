@@ -1,5 +1,5 @@
 <?php
-namespace GdproMailer;
+namespace Gdpro\Mailer;
 
 use Zend\Mail\Transport\Smtp;
 use Zend\Mail\Transport\SmtpOptions;

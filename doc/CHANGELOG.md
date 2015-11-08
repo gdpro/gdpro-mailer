@@ -1,5 +1,9 @@
 ## CHANGELOG
 
+- 1.1.0 :
+    - Clean and refactor configuration
+    - Change namespace from GdproMailer to Gdpro\Mailer
+
 - 1.0.2 :
     - Add Strategy to the SQS queue system permitting to reduce polling request
 

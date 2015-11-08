@@ -1,11 +1,15 @@
 <?php
-namespace GdproMailer;
+namespace Gdpro\Mailer;
 
 use Zend\Mail\Message;
 use Zend\Mime\Message as Mime;
 use Zend\Mime\Part as MimePart;
 use Zend\View\Renderer\PhpRenderer as ViewRenderer;
 
+/**
+ * Class MessageRenderer
+ * @package Gdpro\Mailer
+ */
 class MessageRenderer
 {
     protected $templates;
@@ -19,7 +23,6 @@ class MessageRenderer
 
     public function render($templateName, array $vars = null)
     {
-
         if(!array_key_exists($templateName, $this->templates)) {
             throw new \Exception(
                 __METHOD__.' was unable to fetch the template named '.$templateName

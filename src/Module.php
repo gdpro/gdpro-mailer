@@ -1,5 +1,5 @@
 <?php
-namespace GdproMailer;
+namespace Gdpro\Mailer;
 
 use Zend\ModuleManager\Feature\ConsoleBannerProviderInterface;
 use Zend\ModuleManager\Feature\ConsoleUsageProviderInterface;
@@ -27,7 +27,7 @@ class Module implements ConsoleBannerProviderInterface, ConsoleUsageProviderInte
     {
         return
             "==------------------------------------------------------==\n" .
-            "GdproMailer                                               \n" .
+            "Gdpro\\Mailer                                               \n" .
             "==------------------------------------------------------==\n" .
             "\n";
     }

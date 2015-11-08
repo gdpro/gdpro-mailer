@@ -5,17 +5,17 @@ use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
- * Class MailerServiceFactory
+ * Class SendMailJobFactory
  * @package Gdpro\Mailer\Factory
  */
-class MailerServiceFactory implements FactoryInterface
+class SendMailJobFactory implements FactoryInterface
 {
-    public function createService(ServiceLocatorInterface $services)
+    public function createService(ServiceLocatorInterface $jobPluginManager)
     {
-        $config = $services->get('config');
+        $services = $jobPluginManager->getServiceLocator();
 
-        return new \Gdpro\Mailer\MailerService(
-            $config['gdpro_mailer'],
+        return new \Gdpro\Mailer\Job\SendMailJob(
+            $services->get('Gdpro\\Mailer\\MailerService'),
             $services->get('Gdpro\\Mailer\\MessageRenderer'),
             $services->get('Gdpro\\Mailer\\SmtpManager'),
             $services->get('Gdpro\\Monolog\\LoggerManager')->get('gdpro_mailer')

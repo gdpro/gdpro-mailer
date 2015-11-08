@@ -1,7 +1,7 @@
 <?php
-namespace GdproMailer;
+namespace Gdpro\Mailer;
 
-use GdproMailer\Logger\Log\Creator\MailerLogCreator;
+use Gdpro\Mailer\Logger\Log\Creator\MailerLogCreator;
 use Monolog\Logger;
 use Zend\Mail\Message;
 use Zend\Mail\Transport\Smtp;
