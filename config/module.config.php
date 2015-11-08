@@ -1,12 +1,6 @@
 <?php
 namespace Gdpro\Mailer;
 
-use Gdpro\Mailer\SendMailCommand;
-use Gdpro\Mailer\SendMailJob;
-use Gdpro\Mailer\MailerLogger;
-use Gdpro\Mailer\SmtpManager;
-use Gdpro\Mailer\MessageRenderer;
-use Gdpro\Mailer\MailerService;
 use Gdpro\Mailer\Factory\SendMailCommandFactory;
 use Gdpro\Mailer\Factory\SendMailJobFactory;
 use Gdpro\Mailer\Factory\SmtpManagerFactory;
@@ -99,7 +93,7 @@ return [
              *
              */
             'factories' => [
-                SendMailJob::class => SendMailJobFactory::class
+                SendMailJob::class  => SendMailJobFactory::class
             ]
         ],
 

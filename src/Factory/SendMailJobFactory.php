@@ -14,7 +14,7 @@ class SendMailJobFactory implements FactoryInterface
     {
         $services = $jobPluginManager->getServiceLocator();
 
-        return new \Gdpro\Mailer\Job\SendMailJob(
+        return new \Gdpro\Mailer\SendMailJob(
             $services->get('Gdpro\\Mailer\\MailerService'),
             $services->get('Gdpro\\Mailer\\MessageRenderer'),
             $services->get('Gdpro\\Mailer\\SmtpManager'),

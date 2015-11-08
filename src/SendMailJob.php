@@ -1,9 +1,6 @@
 <?php
-namespace Gdpro\Mailer\Job;
+namespace Gdpro\Mailer;
 
-use Gdpro\Mailer\MailerService;
-use Gdpro\Mailer\MessageRenderer;
-use Gdpro\Mailer\SmtpManager;
 use Monolog\Logger;
 use SlmQueue\Job\AbstractJob;
 use SlmQueue\Worker\WorkerEvent;
