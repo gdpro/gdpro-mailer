@@ -1,6 +1,7 @@
 {
     "name": "gdpro/gdpro-mailer",
     "description": "Mailer module to manage mailer, message, smtp, logger, jobs",
+    "license": "MIT",
     "authors":[
         {
             "name":"Gary Gitton",
