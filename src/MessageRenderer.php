@@ -21,7 +21,6 @@ class MessageRenderer
     {
 
         if(!array_key_exists($templateName, $this->templates)) {
-            var_dump($this->templates); exit;
             throw new \Exception(
                 __METHOD__.' was unable to fetch the template named '.$templateName
             );
