@@ -1,8 +1,6 @@
 <?php
 namespace GdproMailer;
 
-use Gdpro\Mailer\Factory\SendMailCommandFactory;
-use Gdpro\Mailer\SendMailCommand;
 use GdproMailer\Factory\Job\SendMailJobFactory;
 use GdproMailer\Factory\MailerServiceFactory;
 use GdproMailer\Factory\MessageRendererFactory;
@@ -10,30 +8,6 @@ use GdproMailer\Factory\SmtpManagerFactory;
 use GdproMailer\Job\SendMailJob;
 
 return [
-    'console' => [
-        'router' => [
-            'routes' => [
-                'my-first-route' => [
-                    'type'    => 'simple',
-                    'options' => [
-                        'route'    => 'gdpro mailer send mail <templateName> <recipient> <smtpName> <vars>',
-                        'defaults' => [
-                            'controller' => SendMailCommand::class,
-                            'action'     => 'index'
-                        ]
-                    ]
-                ]
-            ]
-        ]
-    ],
-    'controllers' => [
-        'aliases' => [
-            'gdpro_mailer.command.send_mail' => SendMailCommand::class // TODO: Delete for v2
-        ],
-        'factories' => [
-            SendMailCommand::class => SendMailCommandFactory::class
-        ]
-    ],
     'gdpro_mailer' => [
         'email_sending_activated' => true,
 
