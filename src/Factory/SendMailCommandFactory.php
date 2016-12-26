@@ -1,16 +1,11 @@
 <?php
 namespace Gdpro\Mailer\Factory;
 
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Interop\Container\ContainerInterface;
 
-/**
- * Class SendMailCommandFactory
- * @package Gdpro\Mailer\Factory
- */
-class SendMailCommandFactory implements FactoryInterface
+class SendMailCommandFactory
 {
-    public function createService(ServiceLocatorInterface $jobPluginManager)
+    public function __invoke(ContainerInterface $jobPluginManager)
     {
         $services = $jobPluginManager->getServiceLocator();
 

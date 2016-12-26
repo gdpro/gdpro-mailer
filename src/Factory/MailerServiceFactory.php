@@ -1,19 +1,20 @@
 <?php
 namespace GdproMailer\Factory;
 
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use GdproMailer\MessageRenderer;
+use GdproMailer\SmtpManager;
+use Interop\Container\ContainerInterface;
 
-class MailerServiceFactory implements FactoryInterface
+class MailerServiceFactory
 {
-    public function createService(ServiceLocatorInterface $services)
+    public function __invoke(ContainerInterface $services)
     {
         $config = $services->get('config');
 
         return new \GdproMailer\MailerService(
             $config['gdpro_mailer'],
-            $services->get('gdpro_mailer.message_renderer'),
-            $services->get('gdpro_mailer.smtp_manager'),
+            $services->get(MessageRenderer::class),
+            $services->get(SmtpManager::class),
             $services->get('gdpro_monolog.manager')->get('gdpro_mailer')
         );
     }
