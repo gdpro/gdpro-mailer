@@ -11,14 +11,22 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "php": ">=5.5.8"
+        "php": ">=5.5.8",
+        "zendframework/zend-mail": "^2.7",
+        "zendframework/zend-view": "^2.8"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.3",
+        "squizlabs/php_codesniffer": "^2.2",
+        "gdpro/gdpro-monolog": "^1.0",
+        "container-interop/container-interop": "^1.1",
+        "zendframework/zend-modulemanager": "^2.7",
+        "zendframework/zend-console": "^2.6",
+        "slm/queue": "^0.6"
     },
     "suggest": {
         "gdpro/gdpro-monolog": "(^1.0) Log your mailer activity",
         "slm/queue-sqs": "(^0.3) Send your mail later by placing them in a queue"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "~4.3"
     },
     "autoload": {
         "psr-4": {
@@ -29,5 +37,9 @@
         "psr-4": {
             "GdproMailerTest\\": "test/"
         }
+    },
+    "scripts": {
+        "cs-check": "phpcs",
+        "cs-fix": "phpcbf"
     }
 }
