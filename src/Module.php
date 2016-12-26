@@ -1,8 +1,6 @@
 <?php
 namespace GdproMailer;
 
-use Zend\Mvc\ModuleRouteListener;
-use Zend\Mvc\MvcEvent;
 use Zend\ModuleManager\Feature\ConsoleBannerProviderInterface;
 use Zend\ModuleManager\Feature\ConsoleUsageProviderInterface;
 use Zend\Console\Adapter\AdapterInterface as Console;
@@ -18,21 +16,7 @@ class Module implements ConsoleBannerProviderInterface, ConsoleUsageProviderInte
      */
     public function getConfig()
     {
-        return include __DIR__ . '/config/module.config.php';
-    }
-
-    /**
-     * @return array
-     */
-    public function getAutoloaderConfig()
-    {
-        return [
-            'Zend\Loader\StandardAutoloader' => [
-                'namespaces' => [
-                    __NAMESPACE__ => __DIR__ . '/src/'
-                ]
-            ]
-        ];
+        return include __DIR__ . '/../config/module.config.php';
     }
 
     /**
