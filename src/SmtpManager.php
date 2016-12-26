@@ -20,13 +20,13 @@ class SmtpManager
      */
     public function get($smtpName)
     {
-        if(!array_key_exists($smtpName, $this->smtpList)) {
+        if (! array_key_exists($smtpName, $this->smtpList)) {
             throw new \Exception(
                 __METHOD__.' was unable to create an instance for smtp .'.$smtpName
             );
         }
 
-        if(!isset($this->smtpList[$smtpName]['ssl'])) {
+        if (! isset($this->smtpList[$smtpName]['ssl'])) {
             $this->smtpList[$smtpName]['ssl'] = 'tls';
         }
 

@@ -30,7 +30,7 @@ class MessageRenderer
      */
     public function render($templateName, array $vars = null)
     {
-        if(!array_key_exists($templateName, $this->templates)) {
+        if (! array_key_exists($templateName, $this->templates)) {
             throw new \Exception(
                 __METHOD__.' was unable to fetch the template named '.$templateName
             );
@@ -42,12 +42,12 @@ class MessageRenderer
         );
 
         $from_email = $this->templates['_default']['from_email'];
-        if(isset($this->templates[$templateName]['from_email'])) {
+        if (isset($this->templates[$templateName]['from_email'])) {
             $from_email = $this->templates[$templateName]['from_email'];
         }
 
         $from_name = $this->templates['_default']['from_name'];
-        if(isset($this->templates[$templateName]['from_name'])) {
+        if (isset($this->templates[$templateName]['from_name'])) {
             $from_name = $this->templates[$templateName]['from_name'];
         }
 
@@ -55,7 +55,7 @@ class MessageRenderer
         $html->type = "text/html";
 
         $body = new Mime();
-        $body->setParts(array($html));
+        $body->setParts([$html]);
 
         $message = new Message();
         $message->setFrom($from_email, $from_name);

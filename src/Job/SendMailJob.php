@@ -53,9 +53,7 @@ class SendMailJob extends AbstractJob
 
             $message = 'Msg ("'.$templateEmail.'") send to '.$recipient;
             $this->logger->addInfo($message);
-
-        } catch(\Exception $e) {
-
+        } catch (\Exception $e) {
             $this->logger->addError($e->getMessage());
 
             throw $e;

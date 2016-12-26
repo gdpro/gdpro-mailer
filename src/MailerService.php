@@ -40,7 +40,7 @@ class MailerService
     {
         $message->addTo($recipient);
 
-        if(!$this->config['disable_delivery']) {
+        if (! $this->config['disable_delivery']) {
             $smtp->send($message);
         }
     }
@@ -60,7 +60,7 @@ class MailerService
     ) {
         $isDisableDelivery = $this->config['disable_delivery'];
 
-        if($isDisableDelivery) {
+        if ($isDisableDelivery) {
             $this->logger->addInfo('');
             return;
         }
@@ -74,8 +74,7 @@ class MailerService
             $smtp->send($message);
 
             $this->logger->addInfo('');
-
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $this->logger->warn($e->getMessage());
             return false;
         }

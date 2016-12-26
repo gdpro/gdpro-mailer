@@ -1,5 +1,9 @@
 ## CHANGELOG
 
+- 1.0.9
+  - Code improvement
+  - Upgrade Factories for ZF3
+  
 - 1.0.2 :
     - Add Strategy to the SQS queue system permitting to reduce polling request
 

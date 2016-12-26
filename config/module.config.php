@@ -77,11 +77,6 @@ return [
     ],
     'slm_queue' => [
         'job_manager' => [
-            'aliases' => [
-                SendMailJob::class => 'gdpro_mailer.job.send_mail',
-                'gdpro_mailer.job.send_mail' => SendMailJob::class
-            ],
-
             /**
              * Allow to configure dependencies for jobs that are pulled from any queue. This works like any other
              * PluginManager in Zend Framework 2. For instance, if you want to inject something into every job using

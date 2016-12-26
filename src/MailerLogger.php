@@ -27,7 +27,7 @@ class MailerLogger
         $log .= 'Recipient(s): ';
 
         $recipients = $recipient;
-        if (!is_array($recipient)) {
+        if (! is_array($recipient)) {
             $recipients = [$recipient];
         }
 
@@ -45,7 +45,7 @@ class MailerLogger
             $log .= 'Delivery is disable.';
         }
 
-        if (!$disableDelivery) {
+        if (! $disableDelivery) {
             $log .= 'Delivery is enable.';
         }
 
