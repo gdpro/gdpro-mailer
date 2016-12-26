@@ -1,4 +1,14 @@
 <?php
+namespace GdproMailer;
+
+use Gdpro\Mailer\Factory\SendMailCommandFactory;
+use Gdpro\Mailer\SendMailCommand;
+use GdproMailer\Factory\Job\SendMailJobFactory;
+use GdproMailer\Factory\MailerServiceFactory;
+use GdproMailer\Factory\MessageRendererFactory;
+use GdproMailer\Factory\SmtpManagerFactory;
+use GdproMailer\Job\SendMailJob;
+
 return [
     'console' => [
         'router' => [
@@ -8,7 +18,7 @@ return [
                     'options' => [
                         'route'    => 'gdpro mailer send mail <templateName> <recipient> <smtpName> <vars>',
                         'defaults' => [
-                            'controller' => 'gdpro_mailer.command.send_mail',
+                            'controller' => SendMailCommand::class,
                             'action'     => 'index'
                         ]
                     ]
@@ -17,8 +27,11 @@ return [
         ]
     ],
     'controllers' => [
+        'aliases' => [
+            'gdpro_mailer.command.send_mail' => SendMailCommand::class // TODO: Delete for v2
+        ],
         'factories' => [
-            'gdpro_mailer.command.send_mail' => 'GdproMailer\Factory\Command\SendMailCommandFactory'
+            SendMailCommand::class => SendMailCommandFactory::class
         ]
     ],
     'gdpro_mailer' => [
@@ -68,26 +81,31 @@ return [
         'aliases' => [
             'gdpro_mailer.service.mailer' => 'gdpro_mailer.mailer_service',
             'gdpro_mailer.renderer.message' => 'gdpro_mailer.message_renderer',
-            'gdpro_mailer.manager.smtp' => 'gdpro_mailer.smtp_manager'
+            'gdpro_mailer.manager.smtp' => 'gdpro_mailer.smtp_manager',
+            'gdpro_mailer.logger.mailer' => MailerLogger::class,
+            'gdpro_mailer.smtp_manager' => SmtpManager::class,
+            'gdpro_mailer.message_renderer' => MessageRenderer::class,
+            'gdpro_mailer.mailer_service' => MailerService::class,
         ],
         'invokables' => [
-            'gdpro_mailer.logger.mailer' => 'GdproMailer\Logger\MailerLogger',
+            MailerLogger::class => MailerLogger::class,
         ],
         'factories' => [
             // Smtp (Transport)
-            'gdpro_mailer.smtp_manager' => 'GdproMailer\Factory\SmtpManagerFactory',
+            SmtpManager::class => SmtpManagerFactory::class,
 
             // Message
-            'gdpro_mailer.message_renderer' => 'GdproMailer\Factory\MessageRendererFactory',
+            MessageRenderer::class => MessageRendererFactory::class,
 
             // Service
-            'gdpro_mailer.mailer_service' => 'GdproMailer\Factory\MailerServiceFactory',
+            MailerService::class => MailerServiceFactory::class
         ]
     ],
     'slm_queue' => [
         'job_manager' => [
             'aliases' => [
-                'GdproMailer\Job\SendMailJob' => 'gdpro_mailer.job.send_mail'
+                SendMailJob::class => 'gdpro_mailer.job.send_mail',
+                'gdpro_mailer.job.send_mail' => SendMailJob::class
             ],
 
             /**
@@ -98,7 +116,7 @@ return [
              *
              */
             'factories' => [
-                'gdpro_mailer.job.send_mail' => 'GdproMailer\Factory\Job\SendMailJobFactory'
+                SendMailJob::class => SendMailJobFactory::class
             ]
         ],
 
