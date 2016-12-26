@@ -13,6 +13,11 @@ class SmtpManager
         $this->smtpList = $smtpList;
     }
 
+    /**
+     * @param $smtpName
+     * @return Smtp
+     * @throws \Exception
+     */
     public function get($smtpName)
     {
         if(!array_key_exists($smtpName, $this->smtpList)) {

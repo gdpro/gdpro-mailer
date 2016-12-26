@@ -1,8 +1,19 @@
 <?php
 namespace GdproMailer;
 
+/**
+ * Class MailerLogger
+ * @package GdproMailer
+ */
 class MailerLogger
 {
+    /**
+     * @param $templateName
+     * @param $recipient
+     * @param $smtpName
+     * @param $disableDelivery
+     * @return string
+     */
     public function createLog(
         $templateName,
         $recipient,

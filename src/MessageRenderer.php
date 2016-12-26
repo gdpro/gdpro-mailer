@@ -6,6 +6,10 @@ use Zend\Mime\Message as Mime;
 use Zend\Mime\Part as MimePart;
 use Zend\View\Renderer\PhpRenderer as ViewRenderer;
 
+/**
+ * Class MessageRenderer
+ * @package GdproMailer
+ */
 class MessageRenderer
 {
     protected $templates;
@@ -17,6 +21,12 @@ class MessageRenderer
         $this->viewRenderer = $viewRenderer;
     }
 
+    /**
+     * @param $templateName
+     * @param array|null $vars
+     * @return Message
+     * @throws \Exception
+     */
     public function render($templateName, array $vars = null)
     {
 

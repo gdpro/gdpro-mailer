@@ -6,6 +6,10 @@ use Monolog\Logger;
 use Zend\Mail\Message;
 use Zend\Mail\Transport\Smtp;
 
+/**
+ * Class MailerService
+ * @package GdproMailer
+ */
 class MailerService
 {
     protected $config;
@@ -25,6 +29,11 @@ class MailerService
         $this->logger = $logger;
     }
 
+    /**
+     * @param Message $message
+     * @param Smtp $smtp
+     * @param $recipient
+     */
     public function sendMessage(Message $message, Smtp $smtp, $recipient)
     {
         $message->addTo($recipient);
@@ -34,6 +43,13 @@ class MailerService
         }
     }
 
+    /**
+     * @param $templateName
+     * @param $recipient
+     * @param string $smtpName
+     * @param array|null $vars
+     * @return bool|void
+     */
     public function sendMail(
         $templateName,
         $recipient,
