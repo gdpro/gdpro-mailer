@@ -4,29 +4,38 @@ namespace GdproMailer\Job;
 use GdproMailer\MailerService;
 use GdproMailer\MessageRenderer;
 use GdproMailer\SmtpManager;
-use Monolog\Logger;
+use Psr\Log\LoggerInterface;
 use SlmQueue\Job\AbstractJob;
-use SlmQueue\Worker\WorkerEvent;
 
+/**
+ * Class SendMailJob
+ * @package GdproMailer\Job
+ */
 class SendMailJob extends AbstractJob
 {
+    /**
+     * @var MailerService
+     */
     protected $mailerService;
+
+    /**
+     * @var MessageRenderer
+     */
     protected $messageRenderer;
+
+    /**
+     * @var SmtpManager
+     */
     protected $smtpManager;
+
+    /**
+     * @var \Monolog\Logger
+     */
     protected $logger;
 
-    public function __construct(
-        MailerService $mailerService,
-        MessageRenderer $messageRenderer,
-        SmtpManager $smtpManager,
-        Logger $logger
-    ) {
-        $this->mailerService = $mailerService;
-        $this->messageRenderer = $messageRenderer;
-        $this->smtpManager = $smtpManager;
-        $this->logger = $logger;
-    }
-
+    /**
+     * @throws \Exception
+     */
     public function execute()
     {
         try {
@@ -51,5 +60,37 @@ class SendMailJob extends AbstractJob
 
             throw $e;
         }
+    }
+
+    /**
+     * @param MailerService $mailerService
+     */
+    public function setMailerService(MailerService $mailerService)
+    {
+        $this->mailerService = $mailerService;
+    }
+
+    /**
+     * @param MessageRenderer $messageRenderer
+     */
+    public function setMessageRenderer(MessageRenderer $messageRenderer)
+    {
+        $this->messageRenderer = $messageRenderer;
+    }
+
+    /**
+     * @param SmtpManager $smtpManager
+     */
+    public function setSmtpManager(SmtpManager $smtpManager)
+    {
+        $this->smtpManager = $smtpManager;
+    }
+
+    /**
+     * @param LoggerInterface $logger
+     */
+    public function setLogger(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
     }
 }

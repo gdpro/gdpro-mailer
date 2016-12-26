@@ -1,7 +1,7 @@
 <?php
 namespace GdproMailer;
 
-use GdproMailer\Factory\Job\SendMailJobFactory;
+use GdproMailer\Job\Factory\SendMailJobFactory;
 use GdproMailer\Factory\MailerServiceFactory;
 use GdproMailer\Factory\MessageRendererFactory;
 use GdproMailer\Factory\SmtpManagerFactory;

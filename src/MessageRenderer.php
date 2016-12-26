@@ -12,14 +12,15 @@ use Zend\View\Renderer\PhpRenderer as ViewRenderer;
  */
 class MessageRenderer
 {
+    /**
+     * @var array
+     */
     protected $templates;
-    protected $viewRenderer;
 
-    public function __construct(array $templates, ViewRenderer $viewRenderer)
-    {
-        $this->templates = $templates;
-        $this->viewRenderer = $viewRenderer;
-    }
+    /**
+     * @var ViewRenderer
+     */
+    protected $viewRenderer;
 
     /**
      * @param $templateName
@@ -29,7 +30,6 @@ class MessageRenderer
      */
     public function render($templateName, array $vars = null)
     {
-
         if(!array_key_exists($templateName, $this->templates)) {
             throw new \Exception(
                 __METHOD__.' was unable to fetch the template named '.$templateName
@@ -63,5 +63,21 @@ class MessageRenderer
         $message->setBody($body);
 
         return $message;
+    }
+
+    /**
+     * @param array $templates
+     */
+    public function setTemplates(array $templates)
+    {
+        $this->templates = $templates;
+    }
+
+    /**
+     * @param ViewRenderer $viewRenderer
+     */
+    public function setViewRenderer(ViewRenderer $viewRenderer)
+    {
+        $this->viewRenderer = $viewRenderer;
     }
 }

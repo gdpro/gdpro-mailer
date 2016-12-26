@@ -1,7 +1,6 @@
 <?php
 namespace GdproMailer;
 
-use GdproMailer\Logger\Log\Creator\MailerLogCreator;
 use Monolog\Logger;
 use Zend\Mail\Message;
 use Zend\Mail\Transport\Smtp;
@@ -12,22 +11,25 @@ use Zend\Mail\Transport\Smtp;
  */
 class MailerService
 {
+    /**
+     * @var array
+     */
     protected $config;
-    protected $messageRenderer;
-    protected $smtpManager;
-    protected $logger;
 
-    public function __construct(
-        array $config,
-        MessageRenderer $messageRenderer,
-        SmtpManager $smtpManager,
-        Logger $logger
-    ) {
-        $this->config = $config;
-        $this->messageRenderer = $messageRenderer;
-        $this->smtpManager = $smtpManager;
-        $this->logger = $logger;
-    }
+    /**
+     * @var MessageRenderer
+     */
+    protected $messageRenderer;
+
+    /**
+     * @var SmtpManager
+     */
+    protected $smtpManager;
+
+    /**
+     * @var Logger
+     */
+    protected $logger;
 
     /**
      * @param Message $message
@@ -58,11 +60,8 @@ class MailerService
     ) {
         $isDisableDelivery = $this->config['disable_delivery'];
 
-        $log = $this->mailerLogCreator->createLog($templateName,
-            $recipient, $smtpName, $isDisableDelivery);
-
         if($isDisableDelivery) {
-            $this->logger->addInfo($log);
+            $this->logger->addInfo('');
             return;
         }
 
@@ -74,7 +73,7 @@ class MailerService
         try {
             $smtp->send($message);
 
-            $this->logger->addInfo($log);
+            $this->logger->addInfo('');
 
         } catch(\Exception $e) {
             $this->logger->warn($e->getMessage());
@@ -82,5 +81,37 @@ class MailerService
         }
 
         return true;
+    }
+
+    /**
+     * @param array $config
+     */
+    public function setConfig($config)
+    {
+        $this->config = $config;
+    }
+
+    /**
+     * @param MessageRenderer $messageRenderer
+     */
+    public function setMessageRenderer(MessageRenderer $messageRenderer)
+    {
+        $this->messageRenderer = $messageRenderer;
+    }
+
+    /**
+     * @param SmtpManager $smtpManager
+     */
+    public function setSmtpManager(SmtpManager $smtpManager)
+    {
+        $this->smtpManager = $smtpManager;
+    }
+
+    /**
+     * @param Logger $logger
+     */
+    public function setLogger(Logger $logger)
+    {
+        $this->logger = $logger;
     }
 }
