@@ -40,16 +40,24 @@ return [
                 'name' => 'Mailer Logger',
                 'handlers' => [
                     'gdpro_mailer'
+                ],
+                'processors' => [
+                    'WebProcessor',
+                    'GitProcessor',
+                    'IntrospectionProcessor',
+                    'PsrLogMessageProcessor'
                 ]
             ]
         ],
         'handlers' => [
             'gdpro_mailer' => [
+                'class' => 'StreamHandler',
                 'args' => [
                     'stream' =>  'data/log/mailer.log'
-                ]
-            ]
-        ]
+                ],
+                'formatter' => 'default'
+            ],
+        ],
     ],
     'service_manager' => [
         'aliases' => [
