@@ -61,7 +61,7 @@ class MailerService
         $isDisableDelivery = $this->config['disable_delivery'];
 
         if ($isDisableDelivery) {
-            $this->logger->addInfo('');
+            $this->logger->addInfo('A mail should have been sent but delivery is disabled');
             return;
         }
 
@@ -72,10 +72,10 @@ class MailerService
 
         try {
             $smtp->send($message);
+            $this->logger->info('Message sent');
 
-            $this->logger->addInfo('');
         } catch (\Exception $e) {
-            $this->logger->warn($e->getMessage());
+            $this->logger->error($e->getMessage());
             return false;
         }
 
