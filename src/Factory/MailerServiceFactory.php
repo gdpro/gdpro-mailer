@@ -5,6 +5,7 @@ use GdproMailer\MailerService;
 use GdproMailer\MessageRenderer;
 use GdproMailer\SmtpManager;
 use Interop\Container\ContainerInterface;
+use Psr\Log\NullLogger;
 
 class MailerServiceFactory
 {
@@ -24,6 +25,8 @@ class MailerServiceFactory
             $loggerManager = $services->get('gdpro_monolog.manager');
             $logger = $loggerManager->get('gdpro_mailer');
             $instance->setLogger($logger);
+        } else {
+            $instance->setLogger(new NullLogger());
         }
 
         return $instance;

@@ -12,12 +12,12 @@ class MessageRendererFactory
         /** @var PhpRenderer $viewRenderer */
 
         $globalConfig = $container->get('config');
-        $templates = $globalConfig['view_manager']['template_map'];
-        $viewRenderer = $container->get('viewRenderer');
+        $templates = $globalConfig['gdpro_mailer']['templates'];
+        $mailRenderer = $container->get('MailRenderer');
 
         $instance = new \GdproMailer\MessageRenderer();
         $instance->setTemplates($templates);
-        $instance->setViewRenderer($viewRenderer);
+        $instance->setMailRenderer($mailRenderer);
 
         return $instance;
     }
