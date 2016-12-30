@@ -4,14 +4,16 @@ namespace GdproMailer;
 use Zend\Mail\Transport\Smtp;
 use Zend\Mail\Transport\SmtpOptions;
 
+/**
+ * Class SmtpManager
+ * @package GdproMailer
+ */
 class SmtpManager
 {
-    protected $smtpList;
-
-    public function __construct(array $smtpList)
-    {
-        $this->smtpList = $smtpList;
-    }
+    /**
+     * @var array
+     */
+    protected $config;
 
     /**
      * @param $smtpName
@@ -20,26 +22,26 @@ class SmtpManager
      */
     public function get($smtpName)
     {
-        if (! array_key_exists($smtpName, $this->smtpList)) {
+        if (! array_key_exists($smtpName, $this->config)) {
             throw new \Exception(
                 __METHOD__.' was unable to create an instance for smtp .'.$smtpName
             );
         }
 
-        if (! isset($this->smtpList[$smtpName]['ssl'])) {
-            $this->smtpList[$smtpName]['ssl'] = 'tls';
+        if (! isset($this->config[$smtpName]['ssl'])) {
+            $this->config[$smtpName]['ssl'] = 'tls';
         }
 
         // Create Smtp Options
         $options = new SmtpOptions([
-            'name' => $this->smtpList[$smtpName]['hostname'],
-            'host' => $this->smtpList[$smtpName]['host'],
-            'port' => $this->smtpList[$smtpName]['port'],
+            'name' => $this->config[$smtpName]['hostname'],
+            'host' => $this->config[$smtpName]['host'],
+            'port' => $this->config[$smtpName]['port'],
             'connection_class' => 'login',
             'connection_config' => [
-                'username' => $this->smtpList[$smtpName]['username'],
-                'password' => $this->smtpList[$smtpName]['password'],
-                'ssl' => $this->smtpList[$smtpName]['ssl']
+                'username' => $this->config[$smtpName]['username'],
+                'password' => $this->config[$smtpName]['password'],
+                'ssl' => $this->config[$smtpName]['ssl']
             ]
         ]);
 
@@ -47,5 +49,13 @@ class SmtpManager
         $smtp = new Smtp($options);
 
         return $smtp;
+    }
+
+    /**
+     * @param array $config
+     */
+    public function setConfig($config)
+    {
+        $this->config = $config;
     }
 }

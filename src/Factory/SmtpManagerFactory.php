@@ -7,10 +7,13 @@ class SmtpManagerFactory
 {
     public function __invoke(ContainerInterface $services)
     {
-        $config = $services->get('config');
+        /** @var array $globalConfig */
+        $globalConfig = $services->get('config');
+        $smtpConfig = $globalConfig['gdpro_mailer']['smtp'];
 
-        return new \GdproMailer\SmtpManager(
-            $config['gdpro_mailer']['smtp']
-        );
+        $instance = new \GdproMailer\SmtpManager();
+        $instance->setConfig($smtpConfig);
+
+        return $instance;
     }
 }

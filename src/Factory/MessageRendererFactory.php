@@ -2,16 +2,23 @@
 namespace GdproMailer\Factory;
 
 use Interop\Container\ContainerInterface;
+use Zend\View\Renderer\PhpRenderer;
 
 class MessageRendererFactory
 {
-    public function __invoke(ContainerInterface $services)
+    public function __invoke(ContainerInterface $container)
     {
-        $config = $services->get('config');
+        /** @var array $globalConfig */
+        /** @var PhpRenderer $viewRenderer */
 
-        return new \GdproMailer\MessageRenderer(
-            $config['gdpro_mailer']['templates'],
-            $services->get('viewRenderer')
-        );
+        $globalConfig = $container->get('config');
+        $templates = $globalConfig['view_manager']['template_map'];
+        $viewRenderer = $container->get('viewRenderer');
+
+        $instance = new \GdproMailer\MessageRenderer();
+        $instance->setTemplates($templates);
+        $instance->setViewRenderer($viewRenderer);
+
+        return $instance;
     }
 }
