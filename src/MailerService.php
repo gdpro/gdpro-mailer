@@ -1,7 +1,7 @@
 <?php
 namespace GdproMailer;
 
-use Monolog\Logger;
+use Psr\Log\LoggerInterface;
 use Zend\Mail\Message;
 use Zend\Mail\Transport\Smtp;
 
@@ -27,7 +27,7 @@ class MailerService
     protected $smtpManager;
 
     /**
-     * @var Logger
+     * @var LoggerInterface
      */
     protected $logger;
 
@@ -107,9 +107,9 @@ class MailerService
     }
 
     /**
-     * @param Logger $logger
+     * @param LoggerInterface $logger
      */
-    public function setLogger(Logger $logger)
+    public function setLogger(LoggerInterface $logger)
     {
         $this->logger = $logger;
     }
