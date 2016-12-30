@@ -5,6 +5,7 @@ use Zend\Mail\Message;
 use Zend\Mime\Message as Mime;
 use Zend\Mime\Part as MimePart;
 use Zend\View\Renderer\PhpRenderer as ViewRenderer;
+use Zend\View\Renderer\RendererInterface;
 
 /**
  * Class MessageRenderer
@@ -18,9 +19,9 @@ class MessageRenderer
     protected $templates;
 
     /**
-     * @var ViewRenderer
+     * @var RendererInterface
      */
-    protected $viewRenderer;
+    protected $mailRenderer;
 
     /**
      * @param $templateName
@@ -36,7 +37,7 @@ class MessageRenderer
             );
         }
 
-        $content = $this->viewRenderer->render(
+        $content = $this->mailRenderer->render(
             $this->templates[$templateName]['view'],
             $vars
         );
@@ -74,10 +75,10 @@ class MessageRenderer
     }
 
     /**
-     * @param ViewRenderer $viewRenderer
+     * @param RendererInterface $mailRenderer
      */
-    public function setViewRenderer(ViewRenderer $viewRenderer)
+    public function setMailRenderer(RendererInterface $mailRenderer)
     {
-        $this->viewRenderer = $viewRenderer;
+        $this->mailRenderer = $mailRenderer;
     }
 }
