@@ -76,10 +76,7 @@ class MailerService
 
         } catch (\Exception $e) {
             $this->logger->error($e->getMessage());
-            return false;
         }
-
-        return true;
     }
 
     /**
