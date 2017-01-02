@@ -21,7 +21,7 @@ class MailerServiceFactory
         $instance->setMessageRenderer($messageRenderer);
         $instance->setSmtpManager($smtpManager);
 
-        if ($services->has('\\GdproMonolog\\Manager')) {
+        if ($services->has('\\GdproMonolog\\LoggerManager')) {
             $loggerManager = $services->get('gdpro_monolog.manager');
             $logger = $loggerManager->get('gdpro_mailer');
             $instance->setLogger($logger);
