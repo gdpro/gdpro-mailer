@@ -72,7 +72,6 @@ class MailerService
 
         try {
             $smtp->send($message);
-            $this->logger->info('Message sent');
 
         } catch (\Exception $e) {
             $this->logger->error($e->getMessage());
