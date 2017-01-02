@@ -69,13 +69,7 @@ class MailerService
         $message->addTo($recipient);
 
         $smtp = $this->smtpManager->get($smtpName);
-
-        try {
-            $smtp->send($message);
-
-        } catch (\Exception $e) {
-            $this->logger->error($e->getMessage());
-        }
+        $smtp->send($message);
     }
 
     /**
