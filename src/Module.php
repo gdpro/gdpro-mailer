@@ -34,6 +34,9 @@ class Module implements ConsoleBannerProviderInterface, ConsoleUsageProviderInte
 
     /**
      * This method is defined in ConsoleUsageProviderInterface
+     *
+     * @param Console $console
+     * @return array
      */
     public function getConsoleUsage(Console $console)
     {

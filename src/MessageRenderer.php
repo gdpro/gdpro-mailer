@@ -4,7 +4,6 @@ namespace GdproMailer;
 use Zend\Mail\Message;
 use Zend\Mime\Message as Mime;
 use Zend\Mime\Part as MimePart;
-use Zend\View\Renderer\PhpRenderer as ViewRenderer;
 use Zend\View\Renderer\RendererInterface;
 
 /**
@@ -37,19 +36,21 @@ class MessageRenderer
             );
         }
 
+        $templateConfig = $this->templates[$templateName];
+
         $content = $this->mailRenderer->render(
-            $this->templates[$templateName]['view'],
+            $templateConfig['view'],
             $vars
         );
 
         $from_email = $this->templates['_default']['from_email'];
-        if (isset($this->templates[$templateName]['from_email'])) {
-            $from_email = $this->templates[$templateName]['from_email'];
+        if (isset($templateConfig['from_email'])) {
+            $from_email = $templateConfig['from_email'];
         }
 
         $from_name = $this->templates['_default']['from_name'];
-        if (isset($this->templates[$templateName]['from_name'])) {
-            $from_name = $this->templates[$templateName]['from_name'];
+        if (isset($templateConfig['from_name'])) {
+            $from_name = $templateConfig['from_name'];
         }
 
         $html = new MimePart($content);
@@ -60,7 +61,7 @@ class MessageRenderer
 
         $message = new Message();
         $message->setFrom($from_email, $from_name);
-        $message->setSubject($this->templates[$templateName]['subject']);
+        $message->setSubject($templateConfig['subject']);
         $message->setBody($body);
 
         return $message;
