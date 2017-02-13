@@ -10,11 +10,10 @@ use GdproMailer\Job\SendMailJob;
 return [
     'gdpro_mailer' => [
         'email_sending_activated' => true,
-
         'smtp' => [
             'default' => [
-                'domain_name' => '',
-                'host' => 'smtp.googlemail.com',
+                'name' => '',
+                'host' => '',
                 'username' => '',
                 'port' => '25',
                 'password' => ''
@@ -73,13 +72,8 @@ return [
             MailerLogger::class => MailerLogger::class,
         ],
         'factories' => [
-            // Smtp (Transport)
             SmtpManager::class => SmtpManagerFactory::class,
-
-            // Message
             MessageRenderer::class => MessageRendererFactory::class,
-
-            // Service
             MailerService::class => MailerServiceFactory::class
         ]
     ],

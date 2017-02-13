@@ -1,0 +1,17 @@
+<?php
+namespace GdproMailer;
+
+return [
+    'gdpro_mailer' => [
+        'email_sending_activated' => true,
+        'smtp' => [
+            'default' => [
+                'name' => '',
+                'host' => '',
+                'username' => '',
+                'port' => '25',
+                'password' => ''
+            ]
+        ],
+    ],
+];

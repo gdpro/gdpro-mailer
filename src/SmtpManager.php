@@ -34,7 +34,7 @@ class SmtpManager
 
         // Create Smtp Options
         $options = new SmtpOptions([
-            'name' => $this->config[$smtpName]['hostname'],
+            'name' => $this->config[$smtpName]['name'],
             'host' => $this->config[$smtpName]['host'],
             'port' => $this->config[$smtpName]['port'],
             'connection_class' => 'login',
@@ -54,7 +54,7 @@ class SmtpManager
     /**
      * @param array $config
      */
-    public function setConfig($config)
+    public function setConfig(array $config)
     {
         $this->config = $config;
     }
